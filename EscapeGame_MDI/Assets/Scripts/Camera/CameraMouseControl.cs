@@ -16,6 +16,10 @@ public class CameraMouseControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        xRotation = 0;
+        yRotation = 360;
+
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -23,6 +27,7 @@ public class CameraMouseControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 
