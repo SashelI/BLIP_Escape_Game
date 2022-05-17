@@ -27,35 +27,65 @@ public class Detection_collison : MonoBehaviour
 
     private void OnCollisionEnter(Collision obj)
     {
-       if (obj.gameObject.name == "Sang")
+
+            if (obj.gameObject.name == "Sang")
+            {
+                Debug.Log("la bouteille de sang est dans la baignoire");
+                isBloodHere = true;
+            }
+
+
+            if (obj.gameObject.name == "Crane")
+            {
+                Debug.Log("le crane est dans la baignoire");
+                isSkullHere = true;
+            }
+
+
+
+            if (obj.gameObject.name == "Os")
+            {
+                Debug.Log("les os sont dans la baignoire");
+                isBonesHere = true;
+            }
+
+
+            if (obj.gameObject.name == "Yeux")
+            {
+                Debug.Log("les yeux sont dans la baignoire");
+                isEyeHere = true;
+            }
+    }
+
+    private void OnCollisionExit(Collision obj)
+    {
+
+        if (obj.gameObject.name == "Sang")
         {
-            Debug.Log("la bouteille de sang est dans la baignoire");
-            isBloodHere = true;
+            Debug.Log("a plus sang");
+            isBloodHere = false;
         }
-        else { isBloodHere = false; }
 
 
         if (obj.gameObject.name == "Crane")
         {
-            Debug.Log("le crane est dans la baignoire");
-            isSkullHere = true;
+            Debug.Log("a plus crane");
+            isSkullHere = false;
         }
-       else { isSkullHere = false; }
+
 
 
         if (obj.gameObject.name == "Os")
         {
-            Debug.Log("les os sont dans la baignoire");
-            isBonesHere = true;
+            Debug.Log("a plus os");
+            isBonesHere = false;
         }
-        else { isBonesHere = false; }
 
 
         if (obj.gameObject.name == "Yeux")
         {
-            Debug.Log("les yeux sont dans la baignoire");
-            isEyeHere = true;
+            Debug.Log("a plus yeux");
+            isEyeHere = false;
         }
-        else { isEyeHere = false; }
     }
-}
+    }
