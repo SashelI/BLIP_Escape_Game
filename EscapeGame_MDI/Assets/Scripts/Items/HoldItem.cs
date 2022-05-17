@@ -49,9 +49,10 @@ public class HoldItem : MonoBehaviour
             }
         }
         Vector3 pos = Input.mousePosition;
+        Vector3 dof = o.GetComponent<Pickupable>().getDOF();
         pos.z = distanceFromCamera;
         pos = mainCamera.GetComponent<Camera>().ScreenToWorldPoint(pos);
-        R.velocity = (pos - o.transform.position) * 10;
+        R.velocity = new Vector3(((pos - o.transform.position) * 10).x * dof.x, ((pos - o.transform.position) * 10).y * dof.y, ((pos - o.transform.position) * 10).z * dof.z);
     }
 
     void pickup()
@@ -68,9 +69,13 @@ public class HoldItem : MonoBehaviour
                 Pickupable p = hit.collider.GetComponent<Pickupable>();
                 if (p != null)
                 {
-                    carrying = true;
                     carriedObject = p.gameObject;
-                    distanceFromCamera = Vector3.Distance(carriedObject.transform.position, mainCamera.transform.position);
+                    if (carriedObject.GetComponent<Pickupable>().isCloseEnough(mainCamera.transform.position))
+                    {
+                        carrying = true;
+                        carriedObject.GetComponent<Pickupable>().isPickedUp(true);
+                        distanceFromCamera = Vector3.Distance(carriedObject.transform.position, mainCamera.transform.position);
+                    }
                 }
             }
         }
@@ -88,6 +93,7 @@ public class HoldItem : MonoBehaviour
     {
         carriedObject.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         carrying = false;
+        carriedObject.GetComponent<Pickupable>().isPickedUp(false);
         carriedObject = null;
     }
 }
