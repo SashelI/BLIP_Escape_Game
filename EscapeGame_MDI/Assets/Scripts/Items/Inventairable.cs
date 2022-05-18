@@ -8,6 +8,7 @@ public class Inventairable : MonoBehaviour
     public ObjectType Objtype { get { return type; } set { type = value; } }
     [SerializeField] private ObjectType type;
     [SerializeField] private Inventory inv;
+    public string objName;
     // Start is called before the first frame update
     void Start()
     {
