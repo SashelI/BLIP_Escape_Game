@@ -4,47 +4,46 @@ using UnityEngine;
 
 public class Ouverture_porte : MonoBehaviour
 {
-    // Smothly open a door
-    float smooth = 1.0f;
-    float DoorOpenAngle = -90.0f;
-    float DoorCloseAngle = 0.0f;
-    bool open;
-    bool enter;
-    float temps;
+
+    public GameObject mainCamera;
+    RaycastHit hit;
+    public LayerMask mask;
+    
+    
+    int x = Screen.width / 2;
+    int y = Screen.height / 2;
+   public float temps;
+    bool open2;
+
 
     void FixedUpdate()
     {
-        temps += Time.deltaTime;
+       temps += Time.deltaTime;
 
-        if (open == true)
-        {
-            var target = Quaternion.Euler(0, DoorOpenAngle, 0);
-            // Dampen towards the target rotation
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, target, Time.deltaTime * smooth);
-        }
 
-        if (open == false)
-        {
-            var target1 = Quaternion.Euler(0, DoorCloseAngle, 0);
-            // Dampen towards the target rotation
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, target1, Time.deltaTime * smooth);
-        }
 
-        if (enter == true)
+        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, 40, mask) && hit.collider != null && hit.collider.tag == "porte")
         {
-            if (Input.GetMouseButton(0))
+            Debug.Log("Object touché : " + hit.collider.name);
+            if (Input.GetMouseButton(0)&& temps > 0.5)
             {
-                if (temps > 0.5)
-                {
-                    open = !open;
-                }
+                Debug.Log("rayon de porte intercepté");
+                open2 = !open2;
+                if(hit.collider.GetComponent<Script_porte>() != null) hit.collider.GetComponent<Script_porte>().open = open2;
                 temps = 0.0f;
-                Debug.Log("interaction avec la porte");
+
             }
+            
+
         }
+        else
+        {
+            Debug.Log("porte non à porté");
+        }
+
     }
 
-    private void OnTriggerEnter(Collider other)
+   /* private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
@@ -60,7 +59,7 @@ public class Ouverture_porte : MonoBehaviour
             Debug.Log("sort");
             (enter) = false;
         }
-    }
+    }*/
 
 }
 

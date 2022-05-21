@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4063524054952400757}
   - component: {fileID: 6490849541166403965}
   - component: {fileID: 8442448990862873048}
-  - component: {fileID: 6152531968947215599}
   m_Layer: 0
   m_Name: Cabinet1_Door.002
   m_TagString: Untagged
@@ -27,11 +26,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1483323077765292472}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.29801026, y: -0.1694371, z: -0.34585136}
+  m_LocalRotation: {x: -0.49991274, y: 0.50008726, z: 0.49991274, w: 0.50008726}
+  m_LocalPosition: {x: -0.002562873, y: 0.0001493697, z: 0.0150102675}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1649211746876990276}
+  m_Father: {fileID: 2028315743147128826}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4063524054952400757
@@ -99,20 +98,86 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &6152531968947215599
-MeshCollider:
+--- !u!1 &4252036814517556913
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1483323077765292472}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2028315743147128826}
+  - component: {fileID: 2112399859235024219}
+  - component: {fileID: 8589875194886542923}
+  - component: {fileID: 9100564307125497107}
+  m_Layer: 0
+  m_Name: Gond
+  m_TagString: porte
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2028315743147128826
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4252036814517556913}
+  m_LocalRotation: {x: 0.49991274, y: -0.50008726, z: -0.49991274, w: 0.50008726}
+  m_LocalPosition: {x: -0.283, y: -0.172, z: -0.346}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7360580863437223007}
+  m_Father: {fileID: 1649211746876990276}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2112399859235024219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4252036814517556913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4d222003a8bc143b9d7ffa53ca3d39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 8589875194886542923}
+  open: 0
+--- !u!95 &8589875194886542923
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4252036814517556913}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ac4962e6655f7b445975b0cc43f0b22a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &9100564307125497107
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4252036814517556913}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6221549852666591034, guid: a65807ffbf62ad04cb7ba1a00c572072, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.056249477, y: 0.71108294, z: 0.5931646}
+  m_Center: {x: 0.015480234, y: 0.3390379, z: -0.28596392}
 --- !u!1 &5931230349806887235
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +207,7 @@ Transform:
   m_LocalPosition: {x: -2.1602364, y: 1.5131754, z: 2.4155562}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7360580863437223007}
+  - {fileID: 2028315743147128826}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
