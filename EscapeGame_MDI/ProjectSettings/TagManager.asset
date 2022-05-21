@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Sang
   - porte
+  - porte_entre
   layers:
   - Default
   - TransparentFX

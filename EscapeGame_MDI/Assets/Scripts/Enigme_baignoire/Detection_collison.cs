@@ -10,6 +10,8 @@ public class Detection_collison : MonoBehaviour
     public bool isBonesHere = false;
     public bool isEyeHere = false;
 
+    public bool enigme_resolu;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,11 @@ public class Detection_collison : MonoBehaviour
         if (isBloodHere && isSkullHere && isBonesHere && isEyeHere)
         {
             //Debug.Log("Gagné");
+            enigme_resolu = true;
+        }
+        else
+        {
+            enigme_resolu = false;
         }
     }
 

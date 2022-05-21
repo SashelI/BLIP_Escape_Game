@@ -15,6 +15,7 @@ public class Ouverture_porte : MonoBehaviour
    public float temps;
     bool open2;
 
+    public Detection_collison detection_Collison;
 
     void FixedUpdate()
     {
@@ -22,24 +23,34 @@ public class Ouverture_porte : MonoBehaviour
 
 
 
-        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, 40, mask) && hit.collider != null && hit.collider.tag == "porte")
+        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, 40, mask) && hit.collider != null)
         {
-            Debug.Log("Object touché : " + hit.collider.name);
-            if (Input.GetMouseButton(0)&& temps > 0.5)
+            if (hit.collider.tag == "porte"
+                || hit.collider.tag == "porte_entre" && detection_Collison.enigme_resolu)
             {
-                Debug.Log("rayon de porte intercepté");
-                open2 = !open2;
-                if(hit.collider.GetComponent<Script_porte>() != null) hit.collider.GetComponent<Script_porte>().open = open2;
-                temps = 0.0f;
+                //Debug.Log("Object touché : " + hit.collider.name);
+                if (Input.GetMouseButton(0) && temps > 0.1)
+                {
+                    //Debug.Log("rayon de porte intercepté");
+                    open2 = !open2;
+                    if (hit.collider.GetComponent<Script_porte>() != null) hit.collider.GetComponent<Script_porte>().open = open2;
+                    temps = 0.0f;
 
+                }
             }
-            
+            else if (hit.collider.tag == "porte_entre")
+            {
+                if (Input.GetMouseButton(0))
+                {
+                    Debug.Log("L'énigle est non résolu donc la porte reste fermé !");
+                }
+            }
 
         }
-        else
+        /*else
         {
             Debug.Log("porte non à porté");
-        }
+        }*/
 
     }
 
