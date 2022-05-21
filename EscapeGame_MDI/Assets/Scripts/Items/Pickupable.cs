@@ -14,21 +14,7 @@ public class Pickupable : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (GetComponent<Outline>() != null)
-		{
-			if (pickedUp)
-			{
-				GetComponent<Outline>().enabled = false;
-			}
-			else if ((Vector3.Distance(transform.position, cam.position) <= maxDist) && GetComponent<Outline>().enabled == false)
-			{
-				GetComponent<Outline>().enabled = true;
-			}
-			else if (GetComponent<Outline>().enabled == true && (Vector3.Distance(transform.position, cam.position) > maxDist))
-			{
-				GetComponent<Outline>().enabled = false;
-			}
-		}
+
 	}
 
 	public Vector3 getDOF()
@@ -46,4 +32,38 @@ public class Pickupable : MonoBehaviour {
     {
 		pickedUp = b;
     }
+
+    private void OnMouseOver()
+    {
+		if (GetComponent<Outline>() != null)
+		{
+			if (pickedUp)
+			{
+				GetComponent<Outline>().enabled = false;
+			}
+			else if ((Vector3.Distance(transform.position, cam.position) <= maxDist) && GetComponent<Outline>().enabled == false)
+			{
+				GetComponent<Outline>().enabled = true;
+			}
+			else if (GetComponent<Outline>().enabled == true && (Vector3.Distance(transform.position, cam.position) > maxDist))
+			{
+				GetComponent<Outline>().enabled = false;
+			}
+		}
+	}
+
+    private void OnMouseExit()
+    {
+		if (GetComponent<Outline>() != null)
+		{
+			if (pickedUp)
+			{
+				GetComponent<Outline>().enabled = false;
+			}
+			else if (GetComponent<Outline>().enabled == true)
+			{
+				GetComponent<Outline>().enabled = false;
+			}
+		}
+	}
 }
