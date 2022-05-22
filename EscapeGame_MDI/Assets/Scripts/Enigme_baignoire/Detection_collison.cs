@@ -11,24 +11,40 @@ public class Detection_collison : MonoBehaviour
     public bool isEyeHere = false;
 
     public bool enigme_resolu;
+    public ParticleSystem sang;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        sang.Pause();
+        ParticleSystem.EmissionModule em = sang.emission;
+        em.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isBloodHere && isSkullHere && isBonesHere && isEyeHere)
+        //Cheat code
+        /*if (Input.GetKeyDown("space"))
+        {
+            enigme_resolu = true;
+        }*/
+        if (isBloodHere && isSkullHere && isBonesHere && isEyeHere || Input.GetKeyDown("space"))
         {
             //Debug.Log("Gagné");
             enigme_resolu = true;
+
+            sang.Play();
+            ParticleSystem.EmissionModule em = sang.emission;
+            em.enabled = true;
         }
-        else
+       else
         {
             enigme_resolu = false;
+
+            sang.Pause();
+            ParticleSystem.EmissionModule em = sang.emission;
+            em.enabled = false;
         }
     }
 
