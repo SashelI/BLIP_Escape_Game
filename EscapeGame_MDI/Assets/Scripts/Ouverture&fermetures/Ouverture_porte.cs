@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Ouverture_porte : MonoBehaviour
 {
@@ -12,10 +13,20 @@ public class Ouverture_porte : MonoBehaviour
     
     int x = Screen.width / 2;
     int y = Screen.height / 2;
-   public float temps;
+    public float temps;
     bool open2;
 
+    public GameObject texte;
+    public GameObject texte_porte_fermé;
+    
+
     public Detection_collison detection_Collison;
+
+    private void Start()
+    {
+        texte.SetActive(false);
+        Debug.Log("Start");
+    }
 
     void FixedUpdate()
     {
@@ -28,6 +39,8 @@ public class Ouverture_porte : MonoBehaviour
             if (hit.collider.tag == "porte"
                 || hit.collider.tag == "porte_entre" && detection_Collison.enigme_resolu)
             {
+                texte.SetActive(true);
+                texte_porte_fermé.SetActive(false);
                 //Debug.Log("Object touché : " + hit.collider.name);
                 if (Input.GetMouseButton(0) && temps > 0.1)
                 {
@@ -40,16 +53,24 @@ public class Ouverture_porte : MonoBehaviour
             }
             else if (hit.collider.tag == "porte_entre")
             {
+                texte.SetActive(false);
                 if (Input.GetMouseButton(0))
                 {
+                    texte_porte_fermé.SetActive(true);
                     Debug.Log("L'énigle est non résolu donc la porte reste fermé !");
                 }
+            }
+            else
+            {
+                texte_porte_fermé.SetActive(false);
+                texte.SetActive(false);
+
             }
 
         }
         /*else
         {
-            Debug.Log("porte non à porté");
+            
         }*/
 
     }

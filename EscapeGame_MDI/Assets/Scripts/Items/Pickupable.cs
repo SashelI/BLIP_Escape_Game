@@ -6,11 +6,16 @@ public class Pickupable : MonoBehaviour {
 	[SerializeField] private float maxDist;
 	private bool pickedUp;
 	private Transform cam;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+
+    public GameObject texte_passage_souris;
+
+    void Start () {
 		pickedUp = false;
 		cam = GameObject.FindWithTag("MainCamera").transform;
-	}
+        texte_passage_souris.SetActive(false);
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -35,7 +40,8 @@ public class Pickupable : MonoBehaviour {
 
     private void OnMouseOver()
     {
-		if (GetComponent<Outline>() != null)
+        //texte_passage_souris.SetActive(true);
+        if (GetComponent<Outline>() != null)
 		{
 			if (pickedUp)
 			{
@@ -54,7 +60,8 @@ public class Pickupable : MonoBehaviour {
 
     private void OnMouseExit()
     {
-		if (GetComponent<Outline>() != null)
+        //texte_passage_souris.SetActive(false);
+        if (GetComponent<Outline>() != null)
 		{
 			if (pickedUp)
 			{

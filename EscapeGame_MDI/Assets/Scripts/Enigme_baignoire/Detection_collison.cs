@@ -29,7 +29,7 @@ public class Detection_collison : MonoBehaviour
         {
             enigme_resolu = true;
         }*/
-        if (isBloodHere && isSkullHere && isBonesHere && isEyeHere || Input.GetKeyDown("space"))
+        if (isBloodHere && isSkullHere && isBonesHere && isEyeHere)
         {
             //Debug.Log("Gagné");
             enigme_resolu = true;
