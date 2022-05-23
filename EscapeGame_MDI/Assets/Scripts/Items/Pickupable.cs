@@ -8,12 +8,12 @@ public class Pickupable : MonoBehaviour {
 	private Transform cam;
     // Use this for initialization
 
-    public GameObject texte_passage_souris;
+    //public GameObject texte_passage_souris;
 
     void Start () {
 		pickedUp = false;
 		cam = GameObject.FindWithTag("MainCamera").transform;
-        texte_passage_souris.SetActive(false);
+        //texte_passage_souris.SetActive(false);
 
     }
 	
