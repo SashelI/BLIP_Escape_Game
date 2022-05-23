@@ -100,7 +100,6 @@ public class Ouverture_porte : MonoBehaviour
             // Si le cursseur croise quelque chose qu'il peut lire
             else if (hit.collider.tag == "Feuille")
             {
-                Debug.Log("Feuille !! " );
                 if (Input.GetMouseButton(0) && !feuille_overlay.activeInHierarchy && temps > 0.1)
                 {
                     feuille_overlay.SetActive(true);
