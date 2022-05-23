@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - InvKey
+  - Sang
+  - porte
+  - porte_entre
+  - Cadenas
   layers:
   - Default
   - TransparentFX
