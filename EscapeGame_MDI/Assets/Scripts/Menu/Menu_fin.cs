@@ -9,7 +9,7 @@ public class Menu_fin : MonoBehaviour
     public static bool GameIsPause = false;
     public GameObject menuPauseUi;
 
-    bool fini = false;
+
 
     //public GameObject canva;
 

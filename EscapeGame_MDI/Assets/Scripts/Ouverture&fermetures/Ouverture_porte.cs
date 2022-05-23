@@ -18,6 +18,10 @@ public class Ouverture_porte : MonoBehaviour
 
     public GameObject texte;
     public GameObject texte_porte_fermé;
+    public GameObject feuille_overlay;
+
+    Outline current_outline;
+    Outline last_outline;
     
 
     public Detection_collison detection_Collison;
@@ -25,7 +29,9 @@ public class Ouverture_porte : MonoBehaviour
     private void Start()
     {
         texte.SetActive(false);
-        Debug.Log("Start");
+        texte_porte_fermé.SetActive(false);
+        feuille_overlay.SetActive(false);
+
     }
 
     void FixedUpdate()
@@ -36,6 +42,7 @@ public class Ouverture_porte : MonoBehaviour
 
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, 40, mask) && hit.collider != null)
         {
+            //Si on rencontre une porte non verouillé
             if (hit.collider.tag == "porte"
                 || hit.collider.tag == "porte_entre" && detection_Collison.enigme_resolu)
             {
@@ -50,7 +57,36 @@ public class Ouverture_porte : MonoBehaviour
                     temps = 0.0f;
 
                 }
+                // Gestion des outlines rouges
+                if (hit.collider.GetComponent<Script_porte>() != null)
+                {
+                    if (hit.collider.GetComponent<Script_porte>().GetComponent<Outline>() != null)
+                    {
+                        if (current_outline == null)
+                        {
+                            current_outline = hit.collider.GetComponent<Script_porte>().GetComponent<Outline>();
+                        }
+                        if (current_outline != null && current_outline != hit.collider.GetComponent<Script_porte>().GetComponent<Outline>())
+                        {
+                            last_outline = current_outline;
+                            current_outline = hit.collider.GetComponent<Script_porte>().GetComponent<Outline>();
+                        }
+
+                        if (last_outline != null && last_outline != current_outline)
+                        {
+                            last_outline.enabled = false;
+                            last_outline = current_outline;
+                        }
+
+                        if (current_outline.enabled == false)
+                        {
+                            current_outline.enabled = true;
+                        }
+                    }
+                }
             }
+
+            // Si la porte est verouillé
             else if (hit.collider.tag == "porte_entre")
             {
                 texte.SetActive(false);
@@ -60,12 +96,36 @@ public class Ouverture_porte : MonoBehaviour
                     Debug.Log("L'énigle est non résolu donc la porte reste fermé !");
                 }
             }
+
+            // Si le cursseur croise quelque chose qu'il peut lire
+            else if (hit.collider.tag == "Feuille")
+            {
+                Debug.Log("Feuille !! " );
+                if (Input.GetMouseButton(0) && !feuille_overlay.activeInHierarchy && temps > 0.1)
+                {
+                    feuille_overlay.SetActive(true);
+                    temps = 0.0f;
+                }
+                else if (Input.GetMouseButton(0) && temps > 0.1)
+                {
+                    feuille_overlay.SetActive(false);
+                    temps = 0.0f;
+                }
+            }
+
+            // Si le curseur quitte un objet
             else
             {
                 texte_porte_fermé.SetActive(false);
                 texte.SetActive(false);
-
+                feuille_overlay.SetActive(false);
+                if (last_outline != null)
+                {
+                    last_outline.enabled = false;
+                }
             }
+
+            
 
         }
         /*else
