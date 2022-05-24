@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     private List<Inventairable> inventaire = new List<Inventairable>();
-    private Vector3 basePos = new Vector3(-601.3f, -302.6f, 0.0f);
+    private Vector3 basePos = new Vector3(-863.20f, -489.5f, 0.0f);
     // Start is called before the first frame update
     void Start()
     {
