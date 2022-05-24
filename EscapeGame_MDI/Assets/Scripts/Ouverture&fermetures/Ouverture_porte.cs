@@ -26,6 +26,7 @@ public class Ouverture_porte : MonoBehaviour
     
 
     public Detection_collison detection_Collison;
+    public Code_cadenas cadenas;
 
     private void Start()
     {
@@ -45,7 +46,10 @@ public class Ouverture_porte : MonoBehaviour
         {
             //Si on rencontre une porte non verouillé
             if (hit.collider.tag == "porte"
-                || hit.collider.tag == "porte_entre" && detection_Collison.enigme_resolu)
+                || hit.collider.tag == "porte_entre" && detection_Collison.enigme_resolu
+                || hit.collider.tag == "placard_cuisine" && cadenas.isUnlocked()
+                //|| hit.collider.tag == "tiroire_3"
+                )
             {
                 texte.SetActive(true);
                 texte_porte_fermé.SetActive(false);
@@ -91,13 +95,14 @@ public class Ouverture_porte : MonoBehaviour
             }
 
             // Si la porte est verouillé
-            else if (hit.collider.tag == "porte_entre")
+            else if (hit.collider.tag == "porte_entre"
+                    || hit.collider.tag == "placard_cuisine")
             {
                 texte.SetActive(false);
                 if (Input.GetMouseButton(0))
                 {
                     texte_porte_fermé.SetActive(true);
-                    Debug.Log("L'énigle est non résolu donc la porte reste fermé !");
+                    
                 }
             }
 
