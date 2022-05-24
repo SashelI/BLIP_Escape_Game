@@ -9,6 +9,8 @@ TagManager:
   - porte
   - porte_entre
   - Cadenas
+  - Feuille
+  - placard_cuisine
   layers:
   - Default
   - TransparentFX
