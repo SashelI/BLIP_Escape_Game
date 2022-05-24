@@ -32,12 +32,6 @@ public class Code_cadenas : MonoBehaviour
         if (Chiffre1 && Chiffre2 && Chiffre3 && Chiffre4)
         {
             unlocked = true;
-            ui.SetActive(false);
-            cam.GetComponent<CameraMouseControl>().enabled = true;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            isOpen.SetActive(true);
-            gameObject.SetActive(false);
         }
     }
 public void verifNumber1(string number)
@@ -102,5 +96,23 @@ public void verifNumber1(string number)
     public bool isUnlocked()
     {
         return unlocked;
+    }
+
+    public void Unlock()
+    {
+        ui.SetActive(false);
+        cam.GetComponent<CameraMouseControl>().enabled = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        isOpen.SetActive(true);
+        gameObject.SetActive(false);
+    }
+
+    public void quitter()
+    {
+        ui.SetActive(false);
+        cam.GetComponent<CameraMouseControl>().enabled = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }

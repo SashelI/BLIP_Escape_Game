@@ -24,10 +24,7 @@ public class Inventory : MonoBehaviour
         inventaire.Add(item);
         GameObject[] icons = new GameObject[0];
 
-        if(item.Objtype == Inventairable.ObjectType.key)
-        {
-            icons = GameObject.FindGameObjectsWithTag("InvKey");
-        }
+        icons = GameObject.FindGameObjectsWithTag("InvKey");
 
         if (icons.Length > 0)
         {
