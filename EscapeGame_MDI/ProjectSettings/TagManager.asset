@@ -11,6 +11,8 @@ TagManager:
   - Cadenas
   - Feuille
   - placard_cuisine
+  - porte_SDB
+  - tiroire_3
   layers:
   - Default
   - TransparentFX

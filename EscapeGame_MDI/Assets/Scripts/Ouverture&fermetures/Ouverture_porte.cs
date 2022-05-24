@@ -16,6 +16,8 @@ public class Ouverture_porte : MonoBehaviour
     int y = Screen.height / 2;
     public float temps;
     bool open2;
+    //bool tiroire_3_isUnlocked = false;
+    //bool porte_SDB_isUnlocked = false;
 
     public GameObject texte;
     public GameObject texte_porte_fermé;
@@ -24,9 +26,10 @@ public class Ouverture_porte : MonoBehaviour
     Outline current_outline;
     Outline last_outline;
     
-
+    // Appel de d'autres script
     public Detection_collison detection_Collison;
     public Code_cadenas cadenas;
+    //public Template_interaction_inventaire verou_porte;
 
     private void Start()
     {
@@ -40,7 +43,13 @@ public class Ouverture_porte : MonoBehaviour
     {
        temps += Time.deltaTime;
 
-
+        //Debug.Log(cadenas.isUnlocked());
+        //cheat code
+        /*if (Input.GetKey("a"))
+        {
+            tiroire_3_isUnlocked = true;
+            porte_SDB_isUnlocked = true;
+        }*/
 
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, 40, mask) && hit.collider != null)
         {
@@ -48,11 +57,13 @@ public class Ouverture_porte : MonoBehaviour
             if (hit.collider.tag == "porte"
                 || hit.collider.tag == "porte_entre" && detection_Collison.enigme_resolu
                 || hit.collider.tag == "placard_cuisine" && cadenas.isUnlocked()
-                //|| hit.collider.tag == "tiroire_3"
+                || hit.collider.tag == "tiroire_3" //&& verou_porte.isUnlocked_tiroire()
+                || hit.collider.tag == "porte_SDB" //&& verou_porte.isUnlocked_SDB()
                 )
             {
                 texte.SetActive(true);
                 texte_porte_fermé.SetActive(false);
+                
                 //Debug.Log("Object touché : " + hit.collider.name);
                 if (Input.GetMouseButton(0) && temps > 0.1)
                 {
@@ -99,7 +110,9 @@ public class Ouverture_porte : MonoBehaviour
 
             // Si la porte est verouillé
             else if (hit.collider.tag == "porte_entre"
-                    || hit.collider.tag == "placard_cuisine")
+                    || hit.collider.tag == "placard_cuisine"
+                    || hit.collider.tag == "tiroire_3"
+                    || hit.collider.tag == "porte_SDB")
             {
                 texte.SetActive(false);
                 if (Input.GetMouseButton(0))
