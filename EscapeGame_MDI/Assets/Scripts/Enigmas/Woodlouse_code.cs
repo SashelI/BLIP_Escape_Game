@@ -56,8 +56,17 @@ public class Woodlouse_code : MonoBehaviour
             request_song = false;
             //Invoke("stopRendering", 10.0f);
 
+            // s'il est arrivé
+            if (Vector3.Distance(transform.position, GameObject.Find("Tiroir pour nav").transform.position) <= navMeshAgent.stoppingDistance + 1)
+            {
+                // Target reached
+                GetComponentInChildren<Renderer>().enabled = false;
+
+            }
+
             if (script_tiroir.open)
             {
+                GetComponentInChildren<Renderer>().enabled = true;
                 comportement = 2;
                 request_song = true;
             }
