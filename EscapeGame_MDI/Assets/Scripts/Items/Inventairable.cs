@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Inventairable : MonoBehaviour
 {
-    public enum ObjectType {cube, key}
+    public enum ObjectType {keySDB, keyTiroir}
     public ObjectType Objtype { get { return type; } set { type = value; } }
     [SerializeField] private ObjectType type;
     private Inventory inv;

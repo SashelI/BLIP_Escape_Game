@@ -25,19 +25,26 @@ public class Woodlouse_code : MonoBehaviour
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        door_cabinet = GameObject.Find("Cabinet1_Door.001");
+        door_cabinet = GameObject.Find("Lavabo_Door_coulissante");
         script_cabinet_door = (Script_porte) door_cabinet.GetComponent("Script_porte");
 
         door_tiroir = GameObject.Find("Tiroire 3");
         script_tiroir = (Script_porte) door_tiroir.GetComponent("Script_porte");
     }
 
+    private void stopRendering()
+    {
+        GetComponentInChildren<Renderer>().enabled = false;
+    }
+
     private void FixedUpdate()
     {
         if(comportement == 0)
         {
+            GetComponentInChildren<Renderer>().enabled = false;          
             if (script_cabinet_door.open)
             {
+                GetComponentInChildren<Renderer>().enabled = true;
                 comportement = 1;
                 request_song = true;
             }
@@ -47,9 +54,19 @@ public class Woodlouse_code : MonoBehaviour
         {
             navMeshAgent.destination = GameObject.Find("Tiroir pour nav").transform.position;
             request_song = false;
+            //Invoke("stopRendering", 10.0f);
+
+            // s'il est arrivé
+            if (Vector3.Distance(transform.position, GameObject.Find("Tiroir pour nav").transform.position) <= navMeshAgent.stoppingDistance + 1)
+            {
+                // Target reached
+                GetComponentInChildren<Renderer>().enabled = false;
+
+            }
 
             if (script_tiroir.open)
             {
+                GetComponentInChildren<Renderer>().enabled = true;
                 comportement = 2;
                 request_song = true;
             }
