@@ -33,6 +33,11 @@ public class Code_cadenas : MonoBehaviour
         {
             unlocked = true;
         }
+        //cheat code
+        /*if (Input.GetKey("a"))
+        {
+            unlocked = true;
+        }*/
     }
 public void verifNumber1(string number)
     {
