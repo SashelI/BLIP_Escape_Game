@@ -21,6 +21,8 @@ public class Woodlouse_code : MonoBehaviour
 
     public bool request_song = false;
 
+    private GameObject cadenas;
+
     // Changer en sous fonction triggerable
     private void Awake()
     {
@@ -30,6 +32,8 @@ public class Woodlouse_code : MonoBehaviour
 
         door_tiroir = GameObject.Find("Tiroire 3");
         script_tiroir = (Script_porte) door_tiroir.GetComponent("Script_porte");
+
+        cadenas = GameObject.FindWithTag("Cadenas");
     }
 
     private void stopRendering()
@@ -123,7 +127,31 @@ public class Woodlouse_code : MonoBehaviour
                     cpt = 0;
                 }
             }
+
+            if (cadenas.GetComponent<Code_cadenas>().isUnlocked())
+            {
+                comportement = 3;
+            }
+
+
         }
+
+        if(comportement == 3)
+        {
+            navMeshAgent.destination = GameObject.Find("Tiroir pour nav").transform.position;
+            request_song = false;
+            //Invoke("stopRendering", 10.0f);
+
+            // s'il est arrivé
+            if (Vector3.Distance(transform.position, GameObject.Find("Tiroir pour nav").transform.position) <= navMeshAgent.stoppingDistance + 1)
+            {
+                // Target reached
+                GetComponentInChildren<Renderer>().enabled = false;
+
+            }
+        }
+
+        
         
     }
 }

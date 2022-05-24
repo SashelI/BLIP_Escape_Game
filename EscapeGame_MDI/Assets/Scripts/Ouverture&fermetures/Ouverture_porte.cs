@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Ouverture_porte : MonoBehaviour
 {
@@ -66,10 +67,13 @@ public class Ouverture_porte : MonoBehaviour
                 //Debug.Log("Object touché : " + hit.collider.name);
                 if (Input.GetMouseButton(0) && temps > 0.1)
                 {
-                    //Debug.Log("rayon de porte intercepté");
-                    open2 = !open2;
-                    if (hit.collider.GetComponent<Script_porte>() != null) hit.collider.GetComponent<Script_porte>().open = open2;
-                    temps = 0.0f;
+                    //if (!EventSystem.current.IsPointerOverGameObject())
+                    {
+                        //Debug.Log("rayon de porte intercepté");
+                        open2 = !open2;
+                        if (hit.collider.GetComponent<Script_porte>() != null) hit.collider.GetComponent<Script_porte>().open = open2;
+                        temps = 0.0f;
+                    }
 
                 }
                 // Gestion des outlines rouges
