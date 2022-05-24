@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Ouverture_porte : MonoBehaviour
 {
@@ -26,6 +26,7 @@ public class Ouverture_porte : MonoBehaviour
     
 
     public Detection_collison detection_Collison;
+    public Code_cadenas cadenas;
 
     private void Start()
     {
@@ -45,14 +46,17 @@ public class Ouverture_porte : MonoBehaviour
         {
             //Si on rencontre une porte non verouillé
             if (hit.collider.tag == "porte"
-                || hit.collider.tag == "porte_entre" && detection_Collison.enigme_resolu)
+                || hit.collider.tag == "porte_entre" && detection_Collison.enigme_resolu
+                || hit.collider.tag == "placard_cuisine" && cadenas.isUnlocked()
+                //|| hit.collider.tag == "tiroire_3"
+                )
             {
                 texte.SetActive(true);
                 texte_porte_fermé.SetActive(false);
                 //Debug.Log("Object touché : " + hit.collider.name);
                 if (Input.GetMouseButton(0) && temps > 0.1)
                 {
-                    if (!EventSystem.current.IsPointerOverGameObject())
+                    //if (!EventSystem.current.IsPointerOverGameObject())
                     {
                         //Debug.Log("rayon de porte intercepté");
                         open2 = !open2;
@@ -91,16 +95,14 @@ public class Ouverture_porte : MonoBehaviour
             }
 
             // Si la porte est verouillé
-            else if (hit.collider.tag == "porte_entre")
+            else if (hit.collider.tag == "porte_entre"
+                    || hit.collider.tag == "placard_cuisine")
             {
                 texte.SetActive(false);
                 if (Input.GetMouseButton(0))
                 {
-                    if (!EventSystem.current.IsPointerOverGameObject())
-                    {
-                        texte_porte_fermé.SetActive(true);
-                        Debug.Log("L'énigme est non résolue donc la porte reste fermée !");
-                    }
+                    texte_porte_fermé.SetActive(true);
+                    
                 }
             }
 
