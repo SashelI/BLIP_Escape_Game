@@ -25,7 +25,7 @@ public class Woodlouse_code : MonoBehaviour
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        door_cabinet = GameObject.Find("Cabinet1_Door.001");
+        door_cabinet = GameObject.Find("Lavabo_Door_coulissante");
         script_cabinet_door = (Script_porte) door_cabinet.GetComponent("Script_porte");
 
         door_tiroir = GameObject.Find("Tiroire 3");
