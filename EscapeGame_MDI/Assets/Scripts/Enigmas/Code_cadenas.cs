@@ -15,10 +15,12 @@ public class Code_cadenas : MonoBehaviour
     [SerializeField] private GameObject ui;
     [SerializeField] private GameObject isOpen;
     private GameObject cam;
+    private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
         cam = GameObject.FindGameObjectWithTag("MainCamera");
+        player = GameObject.FindGameObjectWithTag("Player");
         Chiffre1 = false;
         Chiffre2 = false;
         Chiffre3 = false;
@@ -88,6 +90,7 @@ public void verifNumber1(string number)
         {
             ui.SetActive(true);
             cam.GetComponent<CameraMouseControl>().enabled = false;
+            player.GetComponent<PlayerMovemement>().enabled = false;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -102,6 +105,7 @@ public void verifNumber1(string number)
     {
         ui.SetActive(false);
         cam.GetComponent<CameraMouseControl>().enabled = true;
+        player.GetComponent<PlayerMovemement>().enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         isOpen.SetActive(true);
@@ -112,6 +116,7 @@ public void verifNumber1(string number)
     {
         ui.SetActive(false);
         cam.GetComponent<CameraMouseControl>().enabled = true;
+        player.GetComponent<PlayerMovemement>().enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
