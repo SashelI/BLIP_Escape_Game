@@ -13,6 +13,7 @@ TagManager:
   - placard_cuisine
   - porte_SDB
   - tiroire_3
+  - Boite
   layers:
   - Default
   - TransparentFX
