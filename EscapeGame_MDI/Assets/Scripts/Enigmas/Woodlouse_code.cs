@@ -131,6 +131,7 @@ public class Woodlouse_code : MonoBehaviour
             if (cadenas.GetComponent<Code_cadenas>().isUnlocked())
             {
                 comportement = 3;
+
             }
 
 

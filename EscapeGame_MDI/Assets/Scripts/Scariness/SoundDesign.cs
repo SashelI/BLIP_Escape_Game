@@ -11,6 +11,7 @@ public class SoundDesign : MonoBehaviour
     public AudioSource placard2;
     public AudioSource porte;
     public AudioSource rire_horreur;
+    public AudioSource cadenas_son;
 
 
     private bool cabinet_event = false;
@@ -42,6 +43,9 @@ public class SoundDesign : MonoBehaviour
     private Detection_collison s_final;
     private Woodlouse_code s_woodlouse;
 
+    private GameObject cadenas;
+    private bool event_cadenas = true;
+
 
 
     // Start is called before the first frame update
@@ -61,6 +65,8 @@ public class SoundDesign : MonoBehaviour
 
         s_final = (Detection_collison)GameObject.Find("Baignoire").GetComponent("Detection_collison");
         s_woodlouse = (Woodlouse_code)GameObject.Find("Woodlouse0").GetComponent("Woodlouse_code");
+
+        cadenas = GameObject.FindWithTag("Cadenas");
 
         //Cabinet1_Door.001
         //Cabinet1_Door
@@ -141,6 +147,13 @@ public class SoundDesign : MonoBehaviour
             bathtub_event = true;
             bruit_horreur.Play();
             rire_horreur.Play();
+        }
+
+        if(cadenas.GetComponent<Code_cadenas>().isUnlocked() && event_cadenas)
+        {
+            cadenas_son.Play();
+            event_cadenas = false;
+
         }
     }
 }
