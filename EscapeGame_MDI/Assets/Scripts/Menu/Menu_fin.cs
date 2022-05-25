@@ -34,7 +34,6 @@ public class Menu_fin : MonoBehaviour
         menuPauseUi.SetActive(false);
         Time.timeScale = 1f;
         GameIsPause = false;
-       
     }
 
     void Pause()
@@ -42,6 +41,7 @@ public class Menu_fin : MonoBehaviour
         menuPauseUi.SetActive(true);
         Time.timeScale = 0f;
         GameIsPause = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     public void Restart()
