@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 5650749753328134974}
   - component: {fileID: 5650749753328134973}
   - component: {fileID: 5650749753328134972}
+  - component: {fileID: 2451061471562237051}
   m_Layer: 0
   m_Name: "Menu_d\xE9marage"
   m_TagString: Untagged
@@ -235,6 +236,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &2451061471562237051
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5650749753328134970}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5650749753558995539
 GameObject:
   m_ObjectHideFlags: 0
