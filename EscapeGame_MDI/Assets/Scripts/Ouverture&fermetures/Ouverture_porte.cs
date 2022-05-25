@@ -51,8 +51,6 @@ public class Ouverture_porte : MonoBehaviour
             tiroire_3_isUnlocked = true;
             porte_SDB_isUnlocked = true;
         }*/
-        Debug.Log("SDB : " + verou_porte_SDB.isUnlocked_SDB());
-        Debug.Log("tiroir : " + verou_tiroir.isUnlocked_tiroire());
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, 40, mask) && hit.collider != null)
         {
             
@@ -82,33 +80,9 @@ public class Ouverture_porte : MonoBehaviour
                     }
 
                 }
+
+                Gestion_Outlines(hit);
                 // Gestion des outlines rouges
-                if (hit.collider.GetComponent<Script_porte>() != null)
-                {
-                    if (hit.collider.GetComponent<Script_porte>().GetComponent<Outline>() != null)
-                    {
-                        if (current_outline == null)
-                        {
-                            current_outline = hit.collider.GetComponent<Script_porte>().GetComponent<Outline>();
-                        }
-                        if (current_outline != null && current_outline != hit.collider.GetComponent<Script_porte>().GetComponent<Outline>())
-                        {
-                            last_outline = current_outline;
-                            current_outline = hit.collider.GetComponent<Script_porte>().GetComponent<Outline>();
-                        }
-
-                        if (last_outline != null && last_outline != current_outline)
-                        {
-                            last_outline.enabled = false;
-                            last_outline = current_outline;
-                        }
-
-                        if (current_outline.enabled == false)
-                        {
-                            current_outline.enabled = true;
-                        }
-                    }
-                }
             }
 
             // Si la porte est verouillé
@@ -131,6 +105,7 @@ public class Ouverture_porte : MonoBehaviour
             // Si le cursseur croise quelque chose qu'il peut lire
             else if (hit.collider.tag == "Feuille")
             {
+                
                 if (Input.GetMouseButton(0) && !feuille_overlay.activeInHierarchy && temps > 0.1)
                 {
                     feuille_overlay.SetActive(true);
@@ -156,5 +131,36 @@ public class Ouverture_porte : MonoBehaviour
             } 
         }
     }
+
+    void Gestion_Outlines(RaycastHit hit)
+    {
+        if (hit.collider.GetComponent<Script_porte>() != null)
+        {
+            if (hit.collider.GetComponent<Script_porte>().GetComponent<Outline>() != null)
+            {
+                if (current_outline == null)
+                {
+                    current_outline = hit.collider.GetComponent<Script_porte>().GetComponent<Outline>();
+                }
+                if (current_outline != null && current_outline != hit.collider.GetComponent<Script_porte>().GetComponent<Outline>())
+                {
+                    last_outline = current_outline;
+                    current_outline = hit.collider.GetComponent<Script_porte>().GetComponent<Outline>();
+                }
+
+                if (last_outline != null && last_outline != current_outline)
+                {
+                    last_outline.enabled = false;
+                    last_outline = current_outline;
+                }
+
+                if (current_outline.enabled == false)
+                {
+                    current_outline.enabled = true;
+                }
+            }
+        }
+    }
+
 }
 
