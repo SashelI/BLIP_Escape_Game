@@ -42,6 +42,7 @@ public class Menu_fin : MonoBehaviour
         Time.timeScale = 0f;
         GameIsPause = true;
         Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
     }
 
     public void Restart()
