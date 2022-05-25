@@ -29,7 +29,8 @@ public class Ouverture_porte : MonoBehaviour
     // Appel de d'autres script
     public Detection_collison detection_Collison;
     public Code_cadenas cadenas;
-    //public Template_interaction_inventaire verou_porte;
+    public Template_interaction_inventaire verou_porte_SDB;
+    public Template_interaction_inventaire verou_tiroir;
 
     private void Start()
     {
@@ -50,15 +51,17 @@ public class Ouverture_porte : MonoBehaviour
             tiroire_3_isUnlocked = true;
             porte_SDB_isUnlocked = true;
         }*/
-
+        Debug.Log("SDB : " + verou_porte_SDB.isUnlocked_SDB());
+        Debug.Log("tiroir : " + verou_tiroir.isUnlocked_tiroire());
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, 40, mask) && hit.collider != null)
         {
+            
             //Si on rencontre une porte non verouillé
             if (hit.collider.tag == "porte"
                 || hit.collider.tag == "porte_entre" && detection_Collison.enigme_resolu
                 || hit.collider.tag == "placard_cuisine" && cadenas.isUnlocked()
-                || hit.collider.tag == "tiroire_3" //&& verou_porte.isUnlocked_tiroire()
-                || hit.collider.tag == "porte_SDB" //&& verou_porte.isUnlocked_SDB()
+                || hit.collider.tag == "tiroire_3" && verou_tiroir.isUnlocked_tiroire()
+                || hit.collider.tag == "porte_SDB" && verou_porte_SDB.isUnlocked_SDB()
                 )
             {
                 texte.SetActive(true);
@@ -150,35 +153,8 @@ public class Ouverture_porte : MonoBehaviour
                 {
                     last_outline.enabled = false;
                 }
-            }
-
-            
-
+            } 
         }
-        /*else
-        {
-            
-        }*/
-
     }
-
-   /* private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            Debug.Log("Entre");
-            (enter) = true;
-        }
-
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            Debug.Log("sort");
-            (enter) = false;
-        }
-    }*/
-
 }
 

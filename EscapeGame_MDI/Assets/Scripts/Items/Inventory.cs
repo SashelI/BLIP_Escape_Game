@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour
 {
     private List<Inventairable> inventaire = new List<Inventairable>();
     private Vector3 basePos = new Vector3(-863.20f, -489.5f, 0.0f);
+
     // Start is called before the first frame update
     void Start()
     {
@@ -76,4 +77,5 @@ public class Inventory : MonoBehaviour
         }
 
     }
+
 }

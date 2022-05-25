@@ -275,6 +275,7 @@ GameObject:
   - component: {fileID: 80666286679562697}
   - component: {fileID: 4492962318548106451}
   - component: {fileID: 4810496660218757757}
+  - component: {fileID: 4851287409967206815}
   - component: {fileID: 5251691109427601211}
   - component: {fileID: 2388262868013932803}
   - component: {fileID: 2421391794596169951}
@@ -354,6 +355,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4851287409967206815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7252228703302646257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c3823151c21724d9825c3e53f76ba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neededObject: keyTiroir
 --- !u!114 &5251691109427601211
 MonoBehaviour:
   m_ObjectHideFlags: 0
