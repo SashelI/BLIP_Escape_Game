@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class Ouverture_porte : MonoBehaviour
 {
@@ -69,10 +69,13 @@ public class Ouverture_porte : MonoBehaviour
                 {
                     //if (!EventSystem.current.IsPointerOverGameObject())
                     {
-                        //Debug.Log("rayon de porte intercepté");
-                        open2 = !open2;
-                        if (hit.collider.GetComponent<Script_porte>() != null) hit.collider.GetComponent<Script_porte>().open = open2;
-                        temps = 0.0f;
+                        if (!EventSystem.current.IsPointerOverGameObject())
+                        {
+                            //Debug.Log("rayon de porte intercepté");
+                            open2 = !open2;
+                            if (hit.collider.GetComponent<Script_porte>() != null) hit.collider.GetComponent<Script_porte>().open = open2;
+                            temps = 0.0f;
+                        }
                     }
 
                 }
@@ -114,7 +117,10 @@ public class Ouverture_porte : MonoBehaviour
                 texte.SetActive(false);
                 if (Input.GetMouseButton(0))
                 {
-                    texte_porte_fermé.SetActive(true);
+                    if (!EventSystem.current.IsPointerOverGameObject())
+                    {
+                        texte_porte_fermé.SetActive(true);
+                    }
                     
                 }
             }
