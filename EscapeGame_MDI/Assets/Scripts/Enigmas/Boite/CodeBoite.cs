@@ -12,6 +12,7 @@ public class CodeBoite : MonoBehaviour
 
     private int order;
     [SerializeField] private GameObject ui;
+    [SerializeField] private GameObject buttonQuit;
     [SerializeField] private GameObject buttonOpen;
 
     private GameObject cam;
@@ -34,12 +35,19 @@ public class CodeBoite : MonoBehaviour
             open = true;
             buttonOpen.SetActive(true);
             gameObject.GetComponent<Outline>().OutlineColor = Color.yellow;
+            buttonQuit.SetActive(false);
+            order = 0;
         }
     }
 
     public bool isOpen()
     {
         return open;
+    }
+
+    public void setOpen(bool p)
+    {
+        open = p;
     }
 
     public void hasBeenPressed(string buttonName)
@@ -104,6 +112,7 @@ public class CodeBoite : MonoBehaviour
 
     private void OnMouseOver()
     {
+        print(open);
         if (Input.GetMouseButtonDown(0) && !open)
         {
             ui.SetActive(true);
